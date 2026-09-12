@@ -4,20 +4,23 @@ const authorInput = document.querySelector('#author-input');
 const ratingInput = document.querySelector('#rating-input');
 const tip = document.querySelector('#tip');
 const list = document.querySelector('#book-list');
+const searchInput = document.querySelector('#search-input');
 
 let books = JSON.parse(localStorage.getItem('books') || '[]');
+let keyword = '';
 
 const save = () => localStorage.setItem('books', JSON.stringify(books));
 
 const render = () => {
   list.innerHTML = '';
-  if (books.length === 0) {
+  const shown = books.filter(b => b.title.includes(keyword));
+  if (shown.length === 0) {
     const li = document.createElement('li');
-    li.textContent = '暂无藏书';
+    li.textContent = keyword === '' ? '暂无藏书' : '没有符合条件的图书';
     list.appendChild(li);
     return;
   }
-  books.forEach((book, index) => {
+  shown.forEach(book => {
     const li = document.createElement('li');
     const info = document.createElement('span');
     info.textContent = book.title + ' — ' + book.author;
@@ -29,7 +32,7 @@ const render = () => {
     del.className = 'del';
     del.textContent = '删除';
     del.addEventListener('click', () => {
-      books.splice(index, 1);
+      books.splice(books.indexOf(book), 1);
       save();
       render();
     });
@@ -64,6 +67,11 @@ form.addEventListener('submit', (e) => {
   titleInput.value = '';
   authorInput.value = '';
   ratingInput.value = '';
+  render();
+});
+
+searchInput.addEventListener('input', () => {
+  keyword = searchInput.value.trim();
   render();
 });
 
