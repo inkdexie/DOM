@@ -17,15 +17,26 @@ const render = () => {
     list.appendChild(li);
     return;
   }
-  books.forEach(book => {
+  books.forEach((book, index) => {
     const li = document.createElement('li');
     const info = document.createElement('span');
     info.textContent = book.title + ' — ' + book.author;
+    const right = document.createElement('span');
     const rating = document.createElement('span');
     rating.className = 'rating';
     rating.textContent = '评分: ' + book.rating;
+    const del = document.createElement('span');
+    del.className = 'del';
+    del.textContent = '删除';
+    del.addEventListener('click', () => {
+      books.splice(index, 1);
+      save();
+      render();
+    });
+    right.appendChild(rating);
+    right.appendChild(del);
     li.appendChild(info);
-    li.appendChild(rating);
+    li.appendChild(right);
     list.appendChild(li);
   });
 };
