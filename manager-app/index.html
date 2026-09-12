@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图书收藏管理</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; max-width: 560px; margin: 24px auto; padding: 0 16px; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    input { padding: 6px 8px; }
+    button { padding: 6px 12px; cursor: pointer; }
+    .tip { color: #c00; font-size: 14px; min-height: 20px; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+    .rating { color: #e8a200; margin-left: 8px; }
+    .search { margin: 12px 0; }
+    .del { color: #c00; cursor: pointer; margin-left: 12px; }
+  </style>
+</head>
+<body>
+  <h1>图书收藏管理</h1>
+  <form id="book-form">
+    <input type="text" id="title-input" placeholder="书名">
+    <input type="text" id="author-input" placeholder="作者">
+    <input type="number" id="rating-input" placeholder="评分1-5" min="1" max="5">
+    <button type="submit">添加</button>
+  </form>
+  <p class="tip" id="tip"></p>
+  <ul id="book-list"></ul>
+  <script src="app.js"></script>
+</body>
+</html>
