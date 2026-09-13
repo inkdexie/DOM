@@ -1,0 +1,6 @@
+* { box-sizing: border-box; }
+body { font-family: sans-serif; max-width: 480px; margin: 48px auto; padding: 0 16px; }
+.app-list { list-style: none; padding: 0; }
+.app-list li { padding: 12px 0; border-bottom: 1px solid #eee; }
+a { color: #0366d6; text-decoration: none; font-size: 18px; }
+a:hover { text-decoration: underline; }
